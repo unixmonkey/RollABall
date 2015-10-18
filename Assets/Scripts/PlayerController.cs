@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour {
 
 	private Rigidbody rb;
 	private int count;
+	private int totalCount;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
+		totalCount = GameObject.FindGameObjectsWithTag("Pickup").Length;
 		count = 0;
 		SetCountText();
 		winText.text = "";
@@ -41,8 +43,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void SetCountText() {
-		countText.text = "Count: " + count.ToString();
-		if (count >= 4) {
+		countText.text = "Count: " + count.ToString() + " of " + totalCount.ToString();
+		if (count >= totalCount) {
 			winText.text = "YOU WIN!!!";
 		}
 	}
